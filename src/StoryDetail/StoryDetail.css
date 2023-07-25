@@ -1,0 +1,9 @@
+.story-detail-card {
+  display: flex;
+  flex-direction: column;
+  border: solid black 1px;
+}
+
+.story-image {
+  width: 200px;
+}
