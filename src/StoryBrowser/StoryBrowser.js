@@ -1,25 +1,39 @@
 import './StoryBrowser.css';
+import { NavLink } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { mockData } from '../mockdata';
+
 import { StoryDetail } from '../StoryDetail/StoryDetail';
 
-export const StoryBrowser = () => {
-  const [stories, setStories] = useState([]);
-  const [error, setError] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [wrongPath, setWrongPath] = useState(false);
+export const StoryBrowser = ({stories, getTitle}) => {
 
-  useEffect(() => {
-    setStories(mockData.articles)
-  })
+  // const viewStory = (article) => {
+  //   setSingleStory(article)
+  // }
+  // console.log('story updated', singleStory)
+  // const { title, content, headline, urlToImage, description, publishedAt, url } = story
 
-  console.log('mockdata', stories)
-
+  const handleClick = (title) => {
+    getTitle(title)
+  }
   return (
     <div className='story-card-container'>
       {stories.map((story) => {
-
-       return <StoryDetail story={story} />
+        
+        const toArray = story.url.split('').slice(29)
+        const toPath = toArray.join('')
+       return (
+        <NavLink 
+        to={`/${toPath}`} 
+        onClick={() => handleClick(story.title)} 
+        style={{ color: 'inherit', textDecoration: 'inherit'}}>
+          <div className='story-detail-card'>
+            <p className='story-headline'>{story.headline}</p>
+            <img className='story-image' src={story.urlToImage}/>
+            <p className='story-description'>{story.description}</p>
+            <p className='story-time'>{story.publishedAt}</p>
+          </div>
+        </NavLink> 
+        )
       })}
     </div>
   )
