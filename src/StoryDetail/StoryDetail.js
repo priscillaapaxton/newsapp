@@ -1,20 +1,21 @@
-import { Link } from 'react-router-dom';
 import './StoryDetail.css';
-// import { useGlobalState } from '../appState';
 
-export const StoryDetail = ({story, viewStory}) => {
-  // const { title, content, headline, urlToImage, description, publishedAt, url } = story
-  // const toArray = url.split('').slice(29)
-  // const toPath = toArray.join('')
-
+export const StoryDetail = ({story}) => {
+    const datePart = story.publishedAt.slice(0, 10)
+    const parts = datePart.split("-"); 
+    const year = parseInt(parts[0]);
+    const month = parseInt(parts[1]);
+    const day = parseInt(parts[2]);
+    const dateObj = new Date(year, month - 1, day); 
+    const options = { year: "numeric", month: "long", day: "numeric" };
+    const formattedDate = dateObj.toLocaleDateString("en-US", options);
 
   return (
     <div className='story-detail-card'>
       <p className='story-title'>{story.title}</p>
-      <p className='story-headline'>{story.headline}</p>
       <img className='story-image' src={story.urlToImage}/>
       <p className='story-description'>{story.description}</p>
-      <p className='story-time'>{story.publishedAt}</p>
+      <p className='story-time'>{formattedDate}</p>
     </div>
   )
 }

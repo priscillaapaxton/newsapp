@@ -1,0 +1,16 @@
+.story-page {
+  display: flex;
+  justify-content: center;
+}
+
+.story-container {
+  margin-top: 25px;
+  width: 70%;
+  height: 550px;
+  background-color: rgb(230, 230, 126, 0.3);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+}
+
+.story-content {
+  font-size: 45px;
+}

@@ -11,9 +11,9 @@ export const SearchBar = ({stories, changeDisplayedStories}) => {
   }
 
   return (
-    <>
-    <p>INPUT HERE</p>
+    <div className='search-bar-container'>
+    <p className='search-text'>Looking for something specific?</p>
     <input className='search-input' name='search' value={inputValue} onChange={updateInputValue} />
-    </>
+    </div>
   )
 }

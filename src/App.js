@@ -2,6 +2,7 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { mockData } from './mockdata'
+import { getNewsData }from './apicalls'
 import './App.css';
 
 import { Header } from './Header/Header';
@@ -18,17 +19,18 @@ function App() {
   const [wrongPath, setWrongPath] = useState(false);
 
   useEffect(() => {
-    setStories(mockData.articles)
-    setDisplayedStories(mockData.articles)
-    // getNewsData()
-    // .then(stories => {
-    //   console.log('newsData', stories.articles)
-    //   setStories(stories.articles)
-    // })
-    // .catch(error => {
-    //   console.log('error', error)
-    //   setError(error)
-    // })
+    // setStories(mockData.articles)
+    // setDisplayedStories(mockData.articles)
+    getNewsData()
+    .then(stories => {
+      console.log('newsData', stories.articles)
+      setStories(stories.articles)
+      setDisplayedStories(stories.articles)
+    })
+    .catch(error => {
+      console.log('error', error)
+      setError(error)
+    })
   }, [])
 
   const getStory = (storyObject) => {
@@ -47,14 +49,23 @@ function App() {
     setDisplayedStories(toDisplay)
   }
 
-  console.log('app', displayedStories)
   return (
     <>
-      <Header clearSetStory={clearSetStory}/>
-      {Object.keys(singleStory).length === 0 ? ( <SearchBar displayedStories={displayedStories} changeDisplayedStories={changeDisplayedStories}/> ) : (null) }
+      <Header 
+      singleStory={singleStory}
+      clearSetStory={clearSetStory}
+      changeDisplayedStories={changeDisplayedStories}
+      />
       <div className="App">
         <Switch>
-          <Route exact path='/:url' render={()=> ( <StoryPage stories={stories} singleStory={singleStory} /> )}/>
+          <Route exact path='/:url' render={({match})=>  {
+            const url = match.url
+            return (
+            <StoryPage 
+              path={url}
+              stories={stories} 
+              singleStory={singleStory} 
+            /> )} }/>
           <Route exact path ='/' render={()=> ( <StoryBrowser displayedStories={displayedStories} getStory={getStory}/> )}/>
         </Switch>
       </div>

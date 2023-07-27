@@ -1,13 +1,23 @@
+import { useEffect, useState } from 'react';
 import './StoryPage.css'
 
-export const StoryPage = ({stories, singleStory}) => {
+export const StoryPage = ({path, stories, singleStory}) => {
+  const [toBeDisplayed, setToBeDisplayed] = useState({});
+  const storyToDisplay = stories.find((story) => story.url.includes(path))
 
-  // const object = stories.find((story) => story.title === singleStory)
+  useEffect(() => {
+    setToBeDisplayed(storyToDisplay)
+  })
+
+
   return (
-    <div>
-      <p className='story content'>{singleStory.content}</p>
-      <p className='story-author'>author{singleStory.author}</p>
-      <a href='https://www.wsj.com/articles/its-time-to-bring-back-the-asylum-ec01fb2'>Read full article here</a>
+    <div className='story-page'>
+      {!stories.length ? ( <p>loading</p> ) : (<div className='story-container'>
+        <p className='story-content'>{storyToDisplay.content}</p>
+        <p className='story-author'>author: {storyToDisplay.author}</p>
+        <a href={storyToDisplay.url}>Read full article here</a>
+      </div>
+      )}
     </div>
   )
 }
