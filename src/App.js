@@ -47,14 +47,24 @@ function App() {
     setDisplayedStories(toDisplay)
   }
 
-  console.log('app', displayedStories)
   return (
     <>
-      <Header clearSetStory={clearSetStory}/>
-      {Object.keys(singleStory).length === 0 ? ( <SearchBar displayedStories={displayedStories} changeDisplayedStories={changeDisplayedStories}/> ) : (null) }
+      <Header 
+      singleStory={singleStory}
+      clearSetStory={clearSetStory}
+      changeDisplayedStories={changeDisplayedStories}
+      />
+      {/* {Object.keys(singleStory).length === 0 ? ( <SearchBar displayedStories={displayedStories} changeDisplayedStories={changeDisplayedStories}/> ) : (null) } */}
       <div className="App">
         <Switch>
-          <Route exact path='/:url' render={()=> ( <StoryPage stories={stories} singleStory={singleStory} /> )}/>
+          <Route exact path='/:url' render={({match})=>  {
+            const url = match.url
+            return (
+            <StoryPage 
+              path={url}
+              stories={stories} 
+              singleStory={singleStory} 
+            /> )} }/>
           <Route exact path ='/' render={()=> ( <StoryBrowser displayedStories={displayedStories} getStory={getStory}/> )}/>
         </Switch>
       </div>

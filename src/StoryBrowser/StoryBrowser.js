@@ -6,13 +6,6 @@ import { StoryDetail } from '../StoryDetail/StoryDetail';
 
 export const StoryBrowser = ({displayedStories, getStory}) => {
 
-  // const viewStory = (article) => {
-  //   setSingleStory(article)
-  // }
-  // console.log('story updated', singleStory)
-  // const { title, content, headline, urlToImage, description, publishedAt, url } = story
-
-  console.log('browser', displayedStories)
   const handleClick = (story) => {
     getStory(story)
   }

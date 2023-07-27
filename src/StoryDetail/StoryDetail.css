@@ -1,7 +1,9 @@
 .story-detail-card {
   display: flex;
   flex-direction: column;
-  border: solid black 1px;
+  /* height: 100px; */
+  background-color: rgb(160, 128, 48, 0.1);
+  border: black solid 1px;
 }
 
 .story-image {
