@@ -6,39 +6,36 @@ import { getNewsData }from './apicalls'
 import './App.css';
 
 import { Header } from './Header/Header';
-import { SearchBar } from './SearchBar/SearchBar';
 import { StoryBrowser } from './StoryBrowser/StoryBrowser';
 import { StoryPage } from './StoryPage/StoryPage';
+import { ServerError } from './ServerError/ServerError';
 
 function App() {
   const [stories, setStories] = useState([]);
   const [displayedStories, setDisplayedStories] = useState([])
-  const [singleStory, setSingleStory] = useState({})
+  const [singleStory, setSingleStory] = useState(false)
   const [error, setError] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const [wrongPath, setWrongPath] = useState(false);
 
   useEffect(() => {
-    // setStories(mockData.articles)
-    // setDisplayedStories(mockData.articles)
-    getNewsData()
-    .then(stories => {
-      console.log('newsData', stories.articles)
-      setStories(stories.articles)
-      setDisplayedStories(stories.articles)
-    })
-    .catch(error => {
-      console.log('error', error)
-      setError(error)
-    })
+    setStories(mockData.articles)
+    setDisplayedStories(mockData.articles)
+    // getNewsData()
+    // .then(stories => {
+    //   console.log('newsData', stories.articles)
+    //   setStories(stories.articles)
+    //   setDisplayedStories(stories.articles)
+    // })
+    // .catch(error => {
+    //   setError(error.message)
+    // })
   }, [])
 
-  const getStory = (storyObject) => {
-    setSingleStory(storyObject)
+  const getStory = () => {
+    setSingleStory(true)
   }
 
   const clearSetStory = () => {
-    setSingleStory({})
+    setSingleStory(false)
   }
 
   const changeDisplayedStories = (input) => {
@@ -47,6 +44,14 @@ function App() {
     return title.includes(input)
   })
     setDisplayedStories(toDisplay)
+  }
+
+  const resetDisplayedStories = () => {
+    setDisplayedStories(stories)
+  }
+
+  if (error.length) {
+    return ( <ServerError /> )
   }
 
   return (
@@ -64,9 +69,14 @@ function App() {
             <StoryPage 
               path={url}
               stories={stories} 
-              singleStory={singleStory} 
+              getStory={getStory}
             /> )} }/>
-          <Route exact path ='/' render={()=> ( <StoryBrowser displayedStories={displayedStories} getStory={getStory}/> )}/>
+          <Route exact path ='/' render={()=> ( <StoryBrowser 
+          displayedStories={displayedStories} 
+          getStory={getStory}
+          resetDisplayedStories={resetDisplayedStories}
+          clearSetStory={clearSetStory}
+          /> )}/>
         </Switch>
       </div>
     </>
