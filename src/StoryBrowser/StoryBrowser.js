@@ -1,13 +1,17 @@
 import './StoryBrowser.css';
 import { NavLink } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-
+import { useEffect } from 'react';
 import { StoryDetail } from '../StoryDetail/StoryDetail';
 
-export const StoryBrowser = ({displayedStories, getStory}) => {
+export const StoryBrowser = ({displayedStories, getStory, resetDisplayedStories, clearSetStory}) => {
 
-  const handleClick = (story) => {
-    getStory(story)
+  useEffect(() => {
+    clearSetStory()
+  })
+
+  const handleClick = () => {
+    getStory()
+    resetDisplayedStories()
   }
   return (
     <div className='story-card-container'>
