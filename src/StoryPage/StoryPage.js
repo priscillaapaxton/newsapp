@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-
 import './StoryPage.css'
 
 export const StoryPage = ({path, stories, getStory}) => {
