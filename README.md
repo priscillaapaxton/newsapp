@@ -18,7 +18,8 @@ This project was intended to simulate a take home tech challenge as part of an i
 ### Architecture:
 The application fetches all news articles and then stores them within the state. An individual article can be viewed using properties of it's url to locate it within the array of articles.
 
-<img width="1133" alt="Screen Shot 2023-07-27 at 3 25 44 PM" src="https://github.com/priscillaapaxton/newsapp/assets/110079837/ffa4e297-5abb-40d3-ad97-404fbd5b6d2f">
+<img width="971" alt="Screen Shot 2023-07-28 at 9 19 51 AM" src="https://github.com/priscillaapaxton/newsapp/assets/110079837/90d269b5-baec-42e2-b501-39650e039ece">
+
 
 
 ### Future Iterations
