@@ -23,5 +23,5 @@ The application fetches all news articles and then stores them within the state.
 
 
 ### Future Iterations
-Future work on this would include: consistent UI (search bar always staying hidden when an article is being viewed), sad path/error handling, testing, and more engaging UI
+testing, and more engaging UI, react hooks global state
  
