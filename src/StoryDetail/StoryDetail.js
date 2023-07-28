@@ -13,7 +13,7 @@ export const StoryDetail = ({story}) => {
   return (
     <div className='story-detail-card'>
       <p className='story-title'>{story.title}</p>
-      <img className='story-image' src={story.urlToImage}/>
+      <img className='story-image' src={story.urlToImage} alt='alt-tag'/>
       <p className='story-description'>{story.description}</p>
       <p className='story-time'>{formattedDate}</p>
     </div>

@@ -11,7 +11,7 @@ export const Header = ({singleStory, clearSetStory, changeDisplayedStories}) => 
 
   return (
     <div className='header'>
-      <NavLink to={'/'} onClick={() => handleClick()} style={{ color: 'inherit', textDecoration: 'inherit' }}>Return Home</NavLink>
+      <NavLink className='return-home' to={'/'} onClick={() => handleClick()} >Return Home</NavLink>
       {!singleStory ? ( <SearchBar  changeDisplayedStories={changeDisplayedStories}/> ) : (null) }
     </div>
   )

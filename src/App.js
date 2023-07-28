@@ -17,17 +17,16 @@ function App() {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    setStories(mockData.articles)
-    setDisplayedStories(mockData.articles)
-    // getNewsData()
-    // .then(stories => {
-    //   console.log('newsData', stories.articles)
-    //   setStories(stories.articles)
-    //   setDisplayedStories(stories.articles)
-    // })
-    // .catch(error => {
-    //   setError(error.message)
-    // })
+    // setStories(mockData.articles)
+    // setDisplayedStories(mockData.articles)
+    getNewsData()
+    .then(stories => {
+      setStories(stories.articles)
+      setDisplayedStories(stories.articles)
+    })
+    .catch(error => {
+      setError(error.message)
+    })
   }, [])
 
   const getStory = () => {
